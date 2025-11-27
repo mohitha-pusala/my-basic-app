@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Name List</title>
+</head>
+<body>
+    <h1>Enter a name</h1>
+
+    <form action="/add" method="POST">
+        <input name="name" required>
+        <button type="submit">Add</button>
+    </form>
+
+    <h2>Names:</h2>
+    <ul id="names"></ul>
+
+    <script>
+        fetch("/names")
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("names").innerHTML =
+                    data.map(n => `<li>${n}</li>`).join("");
+            });
+    </script>
+</body>
+</html>

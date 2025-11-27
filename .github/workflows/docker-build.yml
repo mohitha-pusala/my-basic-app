@@ -1,0 +1,22 @@
+name: Build Docker Image
+
+on:
+  push:
+    branches: [ main ]   # or "master" depending on your repo
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: docker build -t simple-name-app .
+
+      - name: Log success
+        run: echo "Docker image built successfully!"
